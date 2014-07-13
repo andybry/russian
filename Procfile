@@ -1,0 +1,1 @@
+web: $(npm bin)/http-server -p $PORT
