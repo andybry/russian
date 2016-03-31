@@ -2,12 +2,15 @@
   "name": "russian",
   "version": "0.0.0",
   "scripts": {
+    "clean": "rimraf public"
+    "compile": "NODE_ENV=production webpack",
     "start": "webpack-dev-server --hot --inline --host '0.0.0.0' --port $PORT"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "html-webpack-plugin": "^2.15.0",
+    "rimraf": "^2.5.2",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   },
