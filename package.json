@@ -2,9 +2,14 @@
   "name": "russian",
   "version": "0.0.0",
   "scripts": {
-    "clean": "rimraf public"
+    "clean": "rimraf public",
     "compile": "NODE_ENV=production webpack",
-    "start": "webpack-dev-server --hot --inline --host '0.0.0.0' --port $PORT"
+    "prepublish": "npm run clean && npm run compile",
+    "start:dev": "webpack-dev-server --hot --inline --host '0.0.0.0' --port $PORT",
+    "start:prod": "http-server --port $PORT public",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "heroku:deploy": "heroku builds:create -a russian-words",
+    "deploy": "npm install && npm prune --production && npm run heroku:deploy"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +19,8 @@
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "http-server": "^0.9.0",
+    "if-env": "^1.0.0"
+  }
 }
