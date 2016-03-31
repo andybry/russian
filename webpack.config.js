@@ -9,5 +9,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin
-  ]
+  ],
+  module: {
+    loaders: [
+      { test: /\.utf-8$/, loader: 'raw' }
+    ]
+  }
 }
