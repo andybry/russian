@@ -1,7 +1,7 @@
-const lemmas = require('../data/lemma.num.utf-8')
-const wordForms = require('../data/words.num.utf-8')
+const lemmas = require('../data/lemma.csv')
+const wordForms = require('../data/words.csv')
 
-console.log("lemma length: ", lemmas.length)
-console.log("word forms length: ", wordForms.length)
+console.log("lemmas: ", lemmas)
+console.log("wordForms: ", wordForms)
 
 document.write('prb')

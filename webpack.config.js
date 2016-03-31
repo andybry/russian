@@ -12,7 +12,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.utf-8$/, loader: 'raw' }
+      { test: /\.csv$/, loader: 'dsv' }
     ]
   }
 }
