@@ -12,7 +12,8 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.csv$/, loader: 'dsv' }
+      { test: /\.csv$/, loader: 'dsv' },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
     ]
   }
 }

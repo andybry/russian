@@ -1,7 +1,23 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Root from './containers/Root'
+
 const lemmas = require('../data/lemma.csv')
 const wordForms = require('../data/words.csv')
 
-console.log("lemmas: ", lemmas)
-console.log("wordForms: ", wordForms)
+const rootElement = document.createElement('div')
+document.body.insertBefore(rootElement, document.body.children[0])
 
-document.write('prb')
+const render = Component => {
+  ReactDOM.render(
+    <Component />,
+    rootElement
+  )
+}
+render(Root)
+
+if(module.hot) {
+  module.hot.accept('./containers/Root', () => {
+    render(require('./containers/Root').default)
+  })
+}
