@@ -5,7 +5,15 @@ import lemmas from '../data/lemma.csv'
 import wordForms from '../data/words.csv'
 import configureStore from './store/configureStore'
 
-const store = configureStore({ lemmas, wordForms })
+const store = configureStore({ 
+  lemmas,
+  wordForms,
+  pagination: {
+    current: 1,
+    size: 15,
+    total: Math.ceil(lemmas.length / 15)
+  }
+})
 
 const rootElement = document.createElement('div')
 document.body.insertBefore(rootElement, document.body.children[0])

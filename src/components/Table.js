@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ rows, columnNames }) => (
+export default ({ rows, columnNames, startIndex }) => (
   <table>
     <thead>
       <tr>
@@ -11,7 +11,7 @@ export default ({ rows, columnNames }) => (
     <tbody>
       {rows.map((cellByColumn, index) => (
         <tr key={index}>
-          <td>{index + 1}</td>
+          <td>{startIndex + index + 1}</td>
           {columnNames.map((name) => <td key={name}>{cellByColumn[name]}</td>)}
         </tr>
       ))}
