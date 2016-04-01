@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const merge = require('webpack-merge')
 
-module.exports = {
+const base = {
   entry: './src/client',
   output: {
     filename: 'bundle.js',
@@ -16,4 +17,10 @@ module.exports = {
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
     ]
   }
+}
+
+if(process.env.NODE_ENV === 'production') {
+  module.exports = merge(base, require('./config/webpack/prod.config'))
+} else {
+  module.exports = merge(base, require('./config/webpack/dev.config'))
 }
