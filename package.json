@@ -2,6 +2,7 @@
   "name": "russian",
   "version": "0.0.0",
   "scripts": {
+    "lint": "eslint src config webpack.config.js",
     "clean": "rimraf public",
     "compile": "NODE_ENV=production webpack",
     "prepublish": "npm run clean && npm run compile",
@@ -21,6 +22,9 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "dsv-loader": "andybry/dsv-loader#5c85801",
+    "eslint": "^2.6.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
     "html-webpack-plugin": "^2.15.0",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
