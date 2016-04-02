@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
-export default ({ rows, columnNames, startIndex }) => (
+const Table = ({ rows, columnNames, startIndex }) => (
   <table>
     <thead>
       <tr>
@@ -18,3 +18,11 @@ export default ({ rows, columnNames, startIndex }) => (
     </tbody>
   </table>
 )
+
+Table.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columnNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  startIndex: PropTypes.number.isRequired
+}
+
+export default Table
