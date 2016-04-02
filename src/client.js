@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Root from './containers/Root'
+import App from './containers/App'
 import lemmas from '../data/lemma.csv'
 import wordForms from '../data/words.csv'
 import configureStore from './store/configureStore'
+import { Provider } from 'react-redux'
 
-const store = configureStore({ 
+const store = configureStore({
   lemmas,
   wordForms,
   pagination: {
@@ -20,17 +21,20 @@ document.body.insertBefore(rootElement, document.body.children[0])
 
 const render = Component => {
   ReactDOM.render(
-    <Component store={store} />,
+    <Provider store={store}>
+      <Component store={store} />
+    </Provider>,
     rootElement
   )
 }
-render(Root)
+render(App)
 
-if(module.hot) {
-  module.hot.accept('./containers/Root', () => {
+if (module.hot) {
+  module.hot.accept('./containers/App', () => {
     try {
-      render(require('./containers/Root').default)
-    } catch(e) {
+      render(require('./containers/App').default)
+    } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e)
     }
   })

@@ -9,7 +9,8 @@ export default function configureStore(initialState) {
       try {
         const nextReducer = require('../reducers').default
         store.replaceReducer(nextReducer)
-      } catch(e) {
+      } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e)
       }
     })

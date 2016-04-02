@@ -19,7 +19,7 @@ const base = {
   }
 }
 
-if(process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   module.exports = merge(base, require('./config/webpack/prod.config'))
 } else {
   module.exports = merge(base, require('./config/webpack/dev.config'))
