@@ -2,7 +2,7 @@
   "name": "russian",
   "version": "0.0.0",
   "scripts": {
-    "lint": "eslint src config webpack.config.js",
+    "lint": "eslint src config webpack.config.js test",
     "clean": "rimraf public",
     "compile": "NODE_ENV=production webpack",
     "prepublish": "npm run clean && npm run compile",
