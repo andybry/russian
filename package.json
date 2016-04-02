@@ -15,7 +15,8 @@
     "deploy": "npm install && npm prune --production && npm run heroku:deploy"
   },
   "pre-push": [
-    "lint"
+    "lint",
+    "test"
   ],
   "author": "",
   "license": "ISC",
