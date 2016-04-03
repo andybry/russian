@@ -8,8 +8,8 @@
     "prepublish": "npm run clean && npm run compile",
     "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
     "test:watch": "npm test -- --watch --reporter min",
-    "start:dev": "webpack-dev-server --hot --inline --host '0.0.0.0' --port $PORT",
-    "start:prod": "http-server --port $PORT public",
+    "start:dev": "webpack-dev-server --hot --inline --host '0.0.0.0' --port ${PORT:-8080}",
+    "start:prod": "http-server --port ${PORT:-8080} public",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "heroku:deploy": "heroku builds:create -a russian-words",
     "deploy": "npm install && npm prune --production && npm run heroku:deploy"
