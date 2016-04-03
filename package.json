@@ -28,6 +28,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.7.2",
+    "deep-freeze": "0.0.1",
     "dsv-loader": "andybry/dsv-loader#5c85801",
     "enzyme": "^2.2.0",
     "eslint": "^2.6.0",
