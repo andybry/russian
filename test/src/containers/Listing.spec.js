@@ -1,4 +1,4 @@
-import Lemmas from '../../../src/containers/Lemmas'
+import Listing from '../../../src/containers/Listing'
 import expect from 'expect'
 import { mount } from 'enzyme'
 import React from 'react'
@@ -21,7 +21,12 @@ const setup = (pageNumber) => {
   })
   const component = mount(
     <Provider store={store}>
-      <Lemmas params={{ pageNumber }} pageSize={2} />
+      <Listing
+        pageNumber={pageNumber}
+        pageSize={2}
+        stateKey="lemmas"
+        urlFunction={(num) => `/lemmas/${num}`}
+      />
     </Provider>
   )
   return {
