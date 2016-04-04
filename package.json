@@ -8,8 +8,8 @@
     "prepublish": "npm run clean && npm run compile",
     "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
     "test:watch": "npm test -- --watch --reporter min",
-    "start:dev": "webpack-dev-server --hot --inline --host '0.0.0.0' --port ${PORT:-8080}",
-    "start:prod": "http-server --port ${PORT:-8080} public",
+    "start:dev": "webpack-dev-server --hot --inline --host '0.0.0.0' --port ${PORT:-8080} --history-api-fallback",
+    "start:prod": "node src/server",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "heroku:deploy": "heroku builds:create -a russian-words",
     "deploy": "npm install && npm prune --production && npm run heroku:deploy"
@@ -43,6 +43,8 @@
     "react-addons-test-utils": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.1",
+    "react-router": "^2.0.1",
+    "react-router-redux": "^4.0.1",
     "redux": "^3.3.1",
     "rimraf": "^2.5.2",
     "webpack": "^1.12.14",
@@ -50,7 +52,7 @@
     "webpack-merge": "^0.8.4"
   },
   "dependencies": {
-    "http-server": "^0.9.0",
+    "express": "^4.13.4",
     "if-env": "^1.0.0"
   }
 }

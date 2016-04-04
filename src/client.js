@@ -5,16 +5,14 @@ import lemmas from '../data/lemma.csv'
 import wordForms from '../data/words.csv'
 import configureStore from './store/configureStore'
 import { Provider } from 'react-redux'
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 
 const store = configureStore({
   lemmas,
-  wordForms,
-  pagination: {
-    current: 1,
-    size: 15,
-    total: Math.ceil(lemmas.length / 15)
-  }
+  wordForms
 })
+const history = syncHistoryWithStore(browserHistory, store)
 
 const rootElement = document.createElement('div')
 document.body.insertBefore(rootElement, document.body.children[0])
@@ -22,7 +20,7 @@ document.body.insertBefore(rootElement, document.body.children[0])
 const render = Component => {
   ReactDOM.render(
     <Provider store={store}>
-      <Component store={store} />
+      <Component history={history} />
     </Provider>,
     rootElement
   )
