@@ -33,7 +33,7 @@ if (module.hot) {
       render(require('./containers/App').default)
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.log(e)
+      console.error(e)
     }
   })
 }

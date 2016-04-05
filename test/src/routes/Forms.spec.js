@@ -3,6 +3,8 @@ import expect from 'expect'
 import React from 'react'
 import { shallow } from 'enzyme'
 import Listing from '../../../src/containers/Listing'
+import * as urls from '../../../src/routes/urls'
+
 
 const setup = () => {
   const component = shallow(<Forms params={{ pageNumber: '5' }} />)
@@ -23,6 +25,6 @@ describe('src/routes/Forms', () => {
 
   it('should show the correct urls', () => {
     const { urlFunction } = setup()
-    expect(urlFunction(2)).toEqual('/forms/2')
+    expect(urlFunction(2)).toEqual(urls.forms(2))
   })
 })

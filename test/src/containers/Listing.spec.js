@@ -25,7 +25,7 @@ const setup = (pageNumber) => {
         pageNumber={pageNumber}
         pageSize={2}
         stateKey="lemmas"
-        urlFunction={(num) => `/lemmas/${num}`}
+        urlFunction={(num) => urls.lemmas(num)}
       />
     </Provider>
   )
@@ -37,7 +37,7 @@ const setup = (pageNumber) => {
   }
 }
 
-describe('src/containers/App', () => {
+describe('src/containers/Lemmas', () => {
   it('should show the table', () => {
     const { table } = setup(2)
     expect(table.props()).toEqual({
