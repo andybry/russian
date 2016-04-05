@@ -1,23 +1,6 @@
-import React, { PropTypes } from 'react'
+import { PropTypes } from 'react'
 import { connect } from 'react-redux'
-
-const Record = ({ lemma, position, part }) => (
-  <div>
-    <h1>{ lemma }</h1>
-    <dl>
-      <dt>Position: </dt>
-      <dd>{ position }</dd>
-      <dt>Part of speech: </dt>
-      <dd>{ part }</dd>
-    </dl>
-  </div>
-)
-
-Record.propTypes = {
-  lemma: PropTypes.string.isRequired,
-  position: PropTypes.number.isRequired,
-  part: PropTypes.string.isRequired
-}
+import Record from '../components/Record'
 
 const mapStateToProps = (state, ownProps) => {
   const { lemmas } = state
@@ -28,4 +11,11 @@ const mapStateToProps = (state, ownProps) => {
     position: index + 1
   }
 }
-export default connect(mapStateToProps)(Record)
+
+const RecordContainer = connect(mapStateToProps)(Record)
+
+RecordContainer.propTypes = {
+  lemma: PropTypes.string.isRequired
+}
+
+export default RecordContainer

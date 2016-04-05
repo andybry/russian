@@ -32,7 +32,7 @@ const setup = (pageNumber) => {
 
 describe('src/containers/Listing', () => {
   it('should correctly calculate the rows', () => {
-    const { rows } = setup(2)
+    const { rows } = setup('2')
     expect(rows).toEqual([
       { lemma: 'lemma3', part: 'part3' },
       { lemma: 'lemma4', part: 'part4' }
@@ -40,17 +40,17 @@ describe('src/containers/Listing', () => {
   })
 
   it('should correctly calculate the start index', () => {
-    const { startIndex } = setup(3)
+    const { startIndex } = setup('3')
     expect(startIndex).toEqual(4)
   })
 
   it('should correctly calculate the column names', () => {
-    const { columnNames } = setup(3)
+    const { columnNames } = setup('3')
     expect(columnNames).toEqual(['lemma', 'part'])
   })
 
   it('should correctly calculate the pagination', () => {
-    const { pages } = setup(2)
+    const { pages } = setup('2')
     expect(pages).toEqual({
       size: 2,
       current: 2,
@@ -59,7 +59,7 @@ describe('src/containers/Listing', () => {
   })
 
   it('should pass on the urlFunction', () => {
-    const { urlFunction } = setup(2)
+    const { urlFunction } = setup('2')
     expect(urlFunction(7)).toEqual('/url/7')
   })
 })

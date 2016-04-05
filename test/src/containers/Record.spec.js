@@ -1,4 +1,5 @@
-import Record from '../../../src/containers/Record'
+import RecordContainer from '../../../src/containers/Record'
+import RecordComponent from '../../../src/components/Record'
 import React from 'react'
 import configureStore from '../../../src/store/configureStore'
 import { Provider } from 'react-redux'
@@ -17,28 +18,24 @@ const setup = (lemma) => {
   })
   const component = mount(
     <Provider store={store}>
-      <Record lemma={lemma} />
+      <RecordContainer lemma={lemma} />
     </Provider>
   )
-  return {
-    lemma: component.find('h1').text(),
-    position: component.find('dd').at(0).text(),
-    part: component.find('dd').at(1).text()
-  }
+  return component.find(RecordComponent).props()
 }
 
 describe('src/containers/Record', () => {
-  it('should display the correct lemma', () => {
+  it('should calculate the correct lemma', () => {
     const { lemma } = setup('lemma4')
     expect(lemma).toEqual('lemma4')
   })
 
-  it('should display the correct position', () => {
+  it('should calculate the correct position', () => {
     const { position } = setup('lemma4')
     expect(position).toEqual('4')
   })
 
-  it('should display the correct part of speech', () => {
+  it('should calculate the correct part of speech', () => {
     const { part } = setup('lemma4')
     expect(part).toEqual('part4')
   })
