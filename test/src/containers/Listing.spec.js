@@ -1,12 +1,10 @@
-import Listing from '../../../src/containers/Listing'
+import ListingContainer from '../../../src/containers/Listing'
 import expect from 'expect'
 import { mount } from 'enzyme'
 import React from 'react'
-import Table from '../../../src/components/Table'
 import configureStore from '../../../src/store/configureStore'
 import { Provider } from 'react-redux'
-import { Link } from 'react-router'
-import * as urls from '../../../src/routes/urls'
+import ListingComponent from '../../../src/components/Listing'
 
 const setup = (pageNumber) => {
   const store = configureStore({
@@ -21,61 +19,47 @@ const setup = (pageNumber) => {
   })
   const component = mount(
     <Provider store={store}>
-      <Listing
+      <ListingContainer
         pageNumber={pageNumber}
         pageSize={2}
         stateKey="lemmas"
-        urlFunction={(num) => urls.lemmas(num)}
+        urlFunction={(num) => `/url/${num}`}
       />
     </Provider>
   )
-  return {
-    table: component.find(Table),
-    pageOfTotal: component.find('span').text(),
-    back: component.findWhere(el => (
-      el.text() === 'Back') && el.type() === Link
-    ),
-    forward: component.findWhere(el => (
-      el.text() === 'Forward') && el.type() === Link
-    )
-  }
+  return component.find(ListingComponent).props()
 }
 
-describe('src/containers/Lemmas', () => {
-  it('should show the table', () => {
-    const { table } = setup(2)
-    expect(table.props()).toEqual({
-      rows: [
-        { lemma: 'lemma3', part: 'part3' },
-        { lemma: 'lemma4', part: 'part4' }
-      ],
-      columnNames: ['lemma', 'part'],
-      startIndex: 2
+describe('src/containers/Listing', () => {
+  it('should correctly calculate the rows', () => {
+    const { rows } = setup(2)
+    expect(rows).toEqual([
+      { lemma: 'lemma3', part: 'part3' },
+      { lemma: 'lemma4', part: 'part4' }
+    ])
+  })
+
+  it('should correctly calculate the start index', () => {
+    const { startIndex } = setup(3)
+    expect(startIndex).toEqual(4)
+  })
+
+  it('should correctly calculate the column names', () => {
+    const { columnNames } = setup(3)
+    expect(columnNames).toEqual(['lemma', 'part'])
+  })
+
+  it('should correctly calculate the pagination', () => {
+    const { pages } = setup(2)
+    expect(pages).toEqual({
+      size: 2,
+      current: 2,
+      total: 3
     })
   })
 
-  it('should indicate the current page', () => {
-    const { pageOfTotal } = setup(2)
-    expect(pageOfTotal).toEqual('2 / 3')
-  })
-
-  it('should show the next page when forward is clicked', () => {
-    const { forward } = setup(2)
-    expect(forward.props().to).toEqual(urls.lemmas(3))
-  })
-
-  it('should show the previous page when back is clicked', () => {
-    const { back } = setup(2)
-    expect(back.props().to).toEqual(urls.lemmas(1))
-  })
-
-  it('should not show back on the first page', () => {
-    const { back } = setup(1)
-    expect(back.length).toEqual(0)
-  })
-
-  it('should not show foward on the last page', () => {
-    const { forward } = setup(3)
-    expect(forward.length).toEqual(0)
+  it('should pass on the urlFunction', () => {
+    const { urlFunction } = setup(2)
+    expect(urlFunction(7)).toEqual('/url/7')
   })
 })
