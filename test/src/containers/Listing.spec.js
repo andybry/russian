@@ -32,8 +32,12 @@ const setup = (pageNumber) => {
   return {
     table: component.find(Table),
     pageOfTotal: component.find('span').text(),
-    back: component.find(Link).at(0),
-    forward: component.find(Link).at(1)
+    back: component.findWhere(el => (
+      el.text() === 'Back') && el.type() === Link
+    ),
+    forward: component.findWhere(el => (
+      el.text() === 'Forward') && el.type() === Link
+    )
   }
 }
 
@@ -63,5 +67,15 @@ describe('src/containers/Lemmas', () => {
   it('should show the previous page when back is clicked', () => {
     const { back } = setup(2)
     expect(back.props().to).toEqual(urls.lemmas(1))
+  })
+
+  it('should not show back on the first page', () => {
+    const { back } = setup(1)
+    expect(back.length).toEqual(0)
+  })
+
+  it('should not show foward on the last page', () => {
+    const { forward } = setup(3)
+    expect(forward.length).toEqual(0)
   })
 })
