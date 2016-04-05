@@ -1,25 +1,13 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
-import Table from '../components/Table'
-
-const renderBack = (urlFunction, pages) => {
-  if (pages.current === 1) return null
-  return <Link to={urlFunction(pages.current - 1)}>Back</Link>
-}
-
-const renderForward = (urlFunction, pages) => {
-  if (pages.current === pages.total) return null
-  return <Link to={urlFunction(pages.current + 1)}>Forward</Link>
-}
+import Table from './Table'
+import Pagination from './Pagination'
 
 const Listing = ({
   rows, columnNames, startIndex, pages, urlFunction
 }) => (
   <div>
     <Table { ...{ rows, columnNames, startIndex } } />
-    {renderBack(urlFunction, pages)}
-    <span>{ pages.current } / { pages.total }</span>
-    {renderForward(urlFunction, pages)}
+    <Pagination pages={pages} urlFunction={urlFunction} />
   </div>
 )
 

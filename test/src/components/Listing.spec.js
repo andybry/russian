@@ -3,6 +3,7 @@ import expect from 'expect'
 import { shallow } from 'enzyme'
 import React from 'react'
 import Table from '../../../src/components/Table'
+import Pagination from '../../../src/components/Pagination'
 
 const setup = (current) => {
   const props = {
@@ -18,8 +19,8 @@ const setup = (current) => {
   const component = shallow(<Listing {...props} />)
   return {
     table: component.find(Table),
-    back: component.findWhere(el => el.props().children === 'Back'),
-    forward: component.findWhere(el => el.props().children === 'Forward')
+    pagination: component.find(Pagination),
+    props
   }
 }
 
@@ -33,23 +34,9 @@ describe('src/components/Listing', () => {
     })
   })
 
-  it('should show the correct back link', () => {
-    const { back } = setup(3)
-    expect(back.props().to).toEqual('/url/2')
-  })
-
-  it('should show not show back on page 1', () => {
-    const { back } = setup(1)
-    expect(back.length).toEqual(0)
-  })
-
-  it('should show the correct forward link', () => {
-    const { forward } = setup(3)
-    expect(forward.props().to).toEqual('/url/4')
-  })
-
-  it('should show not show forward on last page', () => {
-    const { forward } = setup(5)
-    expect(forward.length).toEqual(0)
+  it('should show the pagination', () => {
+    const { pagination, props } = setup(3)
+    const { pages, urlFunction } = props
+    expect(pagination.props()).toEqual({ pages, urlFunction })
   })
 })
