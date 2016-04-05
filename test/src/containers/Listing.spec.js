@@ -6,7 +6,7 @@ import configureStore from '../../../src/store/configureStore'
 import { Provider } from 'react-redux'
 import ListingComponent from '../../../src/components/Listing'
 
-const setup = () => {
+const setup = (filter) => {
   const store = configureStore({
     lemmas: [
       { lemma: 'lemma1', part: 'part1' },
@@ -21,7 +21,8 @@ const setup = () => {
     pageNumber: '2',
     pageSize: 2,
     stateKey: 'lemmas',
-    urlFunction: num => `/url/${num}`
+    urlFunction: num => `/url/${num}`,
+    filter
   }
   const component = mount(
     <Provider store={store}>
@@ -56,5 +57,15 @@ describe('src/containers/Listing', () => {
       total: 3,
       urlFunction
     })
+  })
+
+  it('should filter results if a filter is given', () => {
+    const { tableProps } = setup(lemma => (
+      lemma.part.match(/^part[256]$/)
+    ))
+    const { rows } = tableProps
+    expect(rows).toEqual([
+      { lemma: 'lemma6', part: 'part6' }
+    ])
   })
 })
