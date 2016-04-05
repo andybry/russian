@@ -5,10 +5,8 @@ import expect from 'expect'
 
 const setup = (current) => {
   const props = {
-    pages: {
-      current,
-      total: 5
-    },
+    current,
+    total: 5,
     urlFunction: num => `/url/${num}`
   }
   const component = shallow(<Pagination {...props} />)

@@ -3,23 +3,25 @@ import Table from './Table'
 import Pagination from './Pagination'
 
 const Listing = ({
-  rows, columnNames, startIndex, pages, urlFunction
+  tableProps, paginationProps
 }) => (
   <div>
-    <Table { ...{ rows, columnNames, startIndex } } />
-    <Pagination pages={pages} urlFunction={urlFunction} />
+    <Table {...tableProps} />
+    <Pagination {...paginationProps} />
   </div>
 )
 
 Listing.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.object).isRequired,
-  columnNames: PropTypes.arrayOf(PropTypes.string).isRequired,
-  startIndex: PropTypes.number.isRequired,
-  pages: PropTypes.shape({
+  tableProps: PropTypes.shape({
+    rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+    columnNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+    startIndex: PropTypes.number.isRequired
+  }),
+  paginationProps: PropTypes.shape({
     current: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired
-  }).isRequired,
-  urlFunction: PropTypes.func.isRequired
+    total: PropTypes.number.isRequired,
+    urlFunction: PropTypes.func.isRequired
+  })
 }
 
 export default Listing
