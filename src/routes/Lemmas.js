@@ -1,16 +1,16 @@
 import React, { PropTypes } from 'react'
 import Listing from '../containers/Listing'
-import { lemmas, lemmasWithPart } from './urls'
+import * as urls from './urls'
 import { Link } from 'react-router'
 
 const Lemmas = ({ params }) => (
   <Listing
     pageNumber={params.pageNumber}
-    urlFunction={lemmas}
+    urlFunction={urls.lemmas}
     stateKey="lemmas"
     transform={lemma => ({
-      lemma: lemma.lemma,
-      part: <Link to={lemmasWithPart(lemma.part, 1)}>{lemma.part}</Link>
+      lemma: <Link to={urls.lemma(lemma.lemma)}>{lemma.lemma}</Link>,
+      part: <Link to={urls.lemmasWithPart(lemma.part, 1)}>{lemma.part}</Link>
     })}
   />
 )

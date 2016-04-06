@@ -46,4 +46,16 @@ describe('src/routes/Lemmas', () => {
       { lemma: 'lemma5', part: 'part' }
     ])
   })
+
+  it('should add the correct transformation for part', () => {
+    const { transform } = setup()
+    const input = { lemma: 'lemma1', part: 'part1' }
+    expect(transform(input).part).toEqual('part1')
+  })
+
+  it('should add the correct transformation for lemma', () => {
+    const { transform } = setup()
+    const input = { lemma: 'lemma1', part: 'part1' }
+    expect(transform(input).lemma.props.to).toEqual('/lemmas/lemma1')
+  })
 })

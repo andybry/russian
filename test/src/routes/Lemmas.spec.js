@@ -36,6 +36,6 @@ describe('src/routes/Lemmas', () => {
   it('should add the correct transformation for lemma', () => {
     const { transform } = setup()
     const input = { lemma: 'lemma1', part: 'part1' }
-    expect(transform(input).lemma).toEqual('lemma1')
+    expect(transform(input).lemma.props.to).toEqual('/lemmas/lemma1')
   })
 })
