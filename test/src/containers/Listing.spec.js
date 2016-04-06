@@ -6,7 +6,7 @@ import configureStore from '../../../src/store/configureStore'
 import { Provider } from 'react-redux'
 import ListingComponent from '../../../src/components/Listing'
 
-const setup = (filter) => {
+const setup = ({ filter, transform } = {}) => {
   const store = configureStore({
     lemmas: [
       { lemma: 'lemma1', part: 'part1' },
@@ -22,7 +22,8 @@ const setup = (filter) => {
     pageSize: 2,
     stateKey: 'lemmas',
     urlFunction: num => `/url/${num}`,
-    filter
+    filter,
+    transform
   }
   const component = mount(
     <Provider store={store}>
@@ -60,12 +61,26 @@ describe('src/containers/Listing', () => {
   })
 
   it('should filter results if a filter is given', () => {
-    const { tableProps } = setup(lemma => (
+    const { tableProps } = setup({ filter: lemma => (
       lemma.part.match(/^part[256]$/)
-    ))
+    ) })
     const { rows } = tableProps
     expect(rows).toEqual([
       { lemma: 'lemma6', part: 'part6' }
+    ])
+  })
+
+  it('should apply transform to rows if present', () => {
+    const { tableProps } = setup({ transform: lemma => (
+      {
+        lemma: lemma.lemma.toUpperCase(),
+        part: lemma.part.toUpperCase()
+      }
+    ) })
+    const { rows } = tableProps
+    expect(rows).toEqual([
+      { lemma: 'LEMMA3', part: 'PART3' },
+      { lemma: 'LEMMA4', part: 'PART4' }
     ])
   })
 })
