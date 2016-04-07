@@ -28,6 +28,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "babel-register": "^6.7.2",
+    "css-loader": "^0.23.1",
     "deep-freeze": "0.0.1",
     "dsv-loader": "andybry/dsv-loader#5c85801",
     "enzyme": "^2.2.0",
@@ -38,6 +39,7 @@
     "html-webpack-plugin": "^2.15.0",
     "jsdom": "^8.2.0",
     "mocha": "^2.4.5",
+    "postcss-loader": "^0.8.2",
     "pre-push": "^0.1.1",
     "react": "^0.14.8",
     "react-addons-test-utils": "^0.14.8",
@@ -48,6 +50,7 @@
     "redux": "^3.3.1",
     "redux-logger": "^2.6.1",
     "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.8.4"

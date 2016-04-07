@@ -8,5 +8,10 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin,
     new webpack.optimize.UglifyJsPlugin,
     new webpack.optimize.DedupePlugin
-  ]
+  ],
+  module: {
+    loaders: [
+      { test: /\.css$/, loader: 'style!css!postcss' }
+    ]
+  }
 }
