@@ -7,13 +7,19 @@ const setup = () => {
   const props = {
     lemma: 'lemma',
     position: 5,
-    part: 'part'
+    part: 'part',
+    record: {
+      meaning: 'meaning'
+    },
+    onChange: expect.createSpy()
   }
   const component = shallow(<Record {...props} />)
   return {
     lemma: component.find('h1').text(),
     position: component.find('dd').at(0).text(),
-    part: component.find('dd').at(1).text()
+    part: component.find('dd').at(1).text(),
+    meaning: component.find('#meaning'),
+    onChange: props.onChange
   }
 }
 
@@ -31,5 +37,17 @@ describe('src/components/Record', () => {
   it('should show the part', () => {
     const { part } = setup()
     expect(part).toEqual('part')
+  })
+
+  it('should show the meaning', () => {
+    const { meaning } = setup()
+    expect(meaning.props().value).toEqual('meaning')
+  })
+
+  it('should call onChange when the meaning changes', () => {
+    const { meaning, onChange } = setup()
+    const e = {}
+    meaning.simulate('change', e)
+    expect(onChange).toHaveBeenCalledWith(e)
   })
 })

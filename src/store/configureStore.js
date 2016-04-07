@@ -1,8 +1,16 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import rootReducer from '../reducers'
+import save from '../middleware/save'
 
 export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState)
+  const middleware = [save]
+  if (process.env.NODE_ENV !== 'production') {
+    const createLogger = require('redux-logger')
+    middleware.unshift(createLogger())
+  }
+  const store = createStore(
+    rootReducer, initialState, applyMiddleware(...middleware)
+  )
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {

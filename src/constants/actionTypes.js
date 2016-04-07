@@ -1,2 +1,1 @@
-export const PAGE_FORWARD = Symbol('PAGE_FORWARD')
-export const PAGE_BACK = Symbol('PAGE_BACK')
+export const RECORD_CHANGED = 'RECORD_CHANGED'

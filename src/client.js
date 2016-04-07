@@ -7,7 +7,11 @@ import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
 const startApp = frequencyData => {
-  const store = configureStore(frequencyData)
+  let records = []
+  if (localStorage.records) {
+    records = JSON.parse(localStorage.records)
+  }
+  const store = configureStore({ ...frequencyData, records })
   const history = syncHistoryWithStore(browserHistory, store)
 
   const rootElement = document.createElement('div')
