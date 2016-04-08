@@ -17,7 +17,9 @@ const base = {
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
     ]
   },
-  postcss: () => []
+  postcss: () => [
+    require('postcss-cssnext')
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {

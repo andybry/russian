@@ -39,6 +39,7 @@
     "html-webpack-plugin": "^2.15.0",
     "jsdom": "^8.2.0",
     "mocha": "^2.4.5",
+    "postcss-cssnext": "^2.5.2",
     "postcss-loader": "^0.8.2",
     "pre-push": "^0.1.1",
     "react": "^0.14.8",
