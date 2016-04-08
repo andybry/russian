@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   plugins: [
@@ -7,11 +8,15 @@ module.exports = {
     }),
     new webpack.optimize.OccurenceOrderPlugin,
     new webpack.optimize.UglifyJsPlugin,
-    new webpack.optimize.DedupePlugin
+    new webpack.optimize.DedupePlugin,
+    new ExtractTextPlugin('style.css')
   ],
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style!css!postcss' }
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css', 'postcss')
+      }
     ]
   }
 }
