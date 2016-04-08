@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "lint": "eslint src config webpack.config.js test",
-    "clean": "rimraf public",
-    "compile": "NODE_ENV=production webpack",
+    "clean": "rimraf public lib",
+    "compile": "NODE_ENV=production webpack && babel src --out-dir lib",
     "prepublish": "npm run clean && npm run compile",
     "test": "mocha --compilers js:babel-register --recursive --require ./test/setup.js",
     "test:watch": "npm test -- --watch --reporter min",
     "start:dev": "webpack-dev-server --hot --inline --host '0.0.0.0' --port ${PORT:-8080} --history-api-fallback",
-    "start:prod": "node src/server",
+    "start:prod": "node lib/server",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "heroku:deploy": "heroku builds:create -a russian-words",
     "deploy": "npm install && npm prune --production && npm run heroku:deploy"
@@ -21,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.7.5",
     "babel-core": "^6.7.4",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.7.4",
