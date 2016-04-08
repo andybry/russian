@@ -1,15 +1,16 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from '../reducers'
 import save from '../middleware/save'
+import DevTools from '../containers/DevTools'
 
 export default function configureStore(initialState) {
-  const middleware = [save]
+  const enhancers = []
   if (process.env.NODE_ENV !== 'production') {
-    const createLogger = require('redux-logger')
-    middleware.unshift(createLogger())
+    enhancers.unshift(DevTools.instrument())
   }
+  enhancers.unshift(applyMiddleware(save))
   const store = createStore(
-    rootReducer, initialState, applyMiddleware(...middleware)
+    rootReducer, initialState, compose(...enhancers)
   )
 
   if (module.hot) {
