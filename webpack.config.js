@@ -16,7 +16,7 @@ const base = {
   module: {
     loaders: [
       { test: /\.csv$/, loader: 'dsv' },
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ }
     ]
   },
   postcss: () => [

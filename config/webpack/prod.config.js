@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   plugins: [
