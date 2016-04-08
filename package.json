@@ -38,6 +38,7 @@
     "expect": "^1.16.0",
     "html-webpack-plugin": "^2.15.0",
     "jsdom": "^8.2.0",
+    "lost": "^6.7.2",
     "mocha": "^2.4.5",
     "postcss-cssnext": "^2.5.2",
     "postcss-loader": "^0.8.2",

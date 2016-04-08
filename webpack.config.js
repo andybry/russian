@@ -18,7 +18,8 @@ const base = {
     ]
   },
   postcss: () => [
-    require('postcss-cssnext')
+    require('postcss-cssnext'),
+    require('lost')
   ]
 }
 
