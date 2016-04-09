@@ -2,10 +2,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 
 const base = {
-  entry: './src/client',
+  entry: ['./src/client'],
   output: {
     filename: 'bundle.js',
-    path: './public',
+    path: `${__dirname}/public`,
     publicPath: '/'
   },
   plugins: [
