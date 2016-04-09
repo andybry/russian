@@ -6,6 +6,7 @@ export const addHotMiddleware = app => {
   const webpackDevMiddleware = require('webpack-dev-middleware')
   const webpackHotMiddleware = require('webpack-hot-middleware')
   app.use((req, res, next) => { // history api fallback
+    if (req.path.match(/hot-update\.js(on)?$/)) return next()
     switch (req.path) {
       case '/__webpack_hmr':
         return next()
