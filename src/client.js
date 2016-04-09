@@ -15,8 +15,7 @@ const startApp = frequencyData => {
   const store = configureStore({ ...frequencyData, records })
   const history = syncHistoryWithStore(browserHistory, store)
 
-  const rootElement = document.createElement('div')
-  document.body.insertBefore(rootElement, document.body.children[0])
+  const rootElement = document.getElementById('root')
 
   const render = Component => {
     ReactDOM.render(

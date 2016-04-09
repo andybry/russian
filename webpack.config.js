@@ -1,4 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 
 const base = {
@@ -8,11 +7,7 @@ const base = {
     path: `${__dirname}/public`,
     publicPath: '/'
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    })
-  ],
+  plugins: [],
   module: {
     loaders: [
       { test: /\.csv$/, loader: 'dsv' },
