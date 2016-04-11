@@ -17,6 +17,16 @@ const startApp = frequencyData => {
 
   const rootElement = document.getElementById('root')
 
+  if (process.env.NODE_ENV !== 'production') {
+    const DevTools = require('./containers/DevTools').default
+    ReactDOM.render(
+      <Provider store={store}>
+        <DevTools />
+      </Provider>,
+      document.getElementById('debug')
+    )
+  }
+
   const render = Component => {
     ReactDOM.render(
       <Provider store={store}>
